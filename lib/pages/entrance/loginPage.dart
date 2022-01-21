@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:dalimansys_app/pages/entrance/forgetPasswordPage.dart';
 import 'package:dalimansys_app/pages/entrance/signInPage.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 24, bottom: 18),
                       child: SvgPicture.asset(
-                        "assets/images/invosys_buysys_login.svg",
+                        "assets/images/invosys_purchsys.svg",
                         width: 213,
                         height: 36,
                       ),
@@ -245,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                             String username = emailTffController.text;
                             String password = passTffController.text;
                             print(
-                                "Kullanıcı Adı : ${username}, Şifre : ${password}");
+                                "Kullanıcı Adı : $username, Şifre : $password");
                           }
                         },
                       ),

@@ -1,8 +1,8 @@
 import 'package:dalimansys_app/pages/insideApp/invosys/allBills/allBills.dart';
-import 'package:dalimansys_app/pages/insideApp/invosys/confirmation.dart';
-import 'package:dalimansys_app/pages/insideApp/invosys/approve.dart';
-import 'package:dalimansys_app/pages/insideApp/invosys/myOpinions.dart';
-import 'package:dalimansys_app/pages/insideApp/invosys/waitingBills.dart';
+import 'package:dalimansys_app/pages/insideApp/invosys/confirmation/confirmation.dart';
+import 'package:dalimansys_app/pages/insideApp/invosys/approve/approve.dart';
+import 'package:dalimansys_app/pages/insideApp/invosys/myOpinions/myOpinions.dart';
+import 'package:dalimansys_app/pages/insideApp/invosys/waitingBills/waitingBills.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

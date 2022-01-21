@@ -1,10 +1,10 @@
-import 'package:dalimansys_app/pages/insideApp/invosys/allBills/billDetails.dart';
-import 'package:dalimansys_app/pages/insideApp/invosys/newBill.dart';
+import 'package:dalimansys_app/pages/insideApp/buysys/allPurches/purchesDetails.dart';
+import 'package:dalimansys_app/pages/insideApp/buysys/newPurches.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AllBills extends StatelessWidget {
+class AllPurches extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +18,8 @@ class AllBills extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Color(0xFF1597D8),
                 Color(0xFF9BDEF7),
+                Color(0xFF1597D8),
               ],
             ),
           ),
@@ -36,7 +36,7 @@ class AllBills extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => NewBill(),
+              builder: (context) => NewPurches(),
             ),
           );
         },
@@ -45,7 +45,7 @@ class AllBills extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16.0),
         child: GridView.count(
           crossAxisCount: 1,
-          childAspectRatio: 2 / 1,
+          childAspectRatio: 2.5 / 1,
           children: [
             _buildCard(context),
             _buildCard(context),
@@ -63,7 +63,7 @@ class AllBills extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BillDetails(),
+            builder: (context) => PurchesDetails(),
           ),
         );
       },
@@ -88,7 +88,7 @@ class AllBills extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        "6746295",
+                        "P002022074",
                         style: GoogleFonts.poppins(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -121,7 +121,7 @@ class AllBills extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                "ERKBY Tarım A.Ş.",
+                "Dalisto Adsoft - Ankara",
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 17,
@@ -131,7 +131,7 @@ class AllBills extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, bottom: 16),
               child: Text(
-                "Aylık Fatura",
+                "Malzeme SA Talebi",
                 style: GoogleFonts.poppins(
                   color: Colors.black,
                   fontSize: 17,
@@ -144,14 +144,14 @@ class AllBills extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Fatura Bedeli",
+                    "Kalem Adedi",
                     style: GoogleFonts.poppins(
                       color: Color(0xFF969696),
                       fontSize: 15,
                     ),
                   ),
                   Text(
-                    "1.399,99 TL",
+                    "4",
                     style: GoogleFonts.poppins(
                       color: Colors.black,
                       fontWeight: FontWeight.w600,
@@ -161,29 +161,29 @@ class AllBills extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 8, right: 8, bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Ekleyen",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF969696),
-                      fontSize: 15,
-                    ),
-                  ),
-                  Text(
-                    "Caner Sarıkavaklı",
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.only(left: 8, right: 8, bottom: 16),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Text(
+            //         "Ekleyen",
+            //         style: GoogleFonts.poppins(
+            //           color: Color(0xFF969696),
+            //           fontSize: 15,
+            //         ),
+            //       ),
+            //       Text(
+            //         "Caner Sarıkavaklı",
+            //         style: GoogleFonts.poppins(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.w600,
+            //           fontSize: 15,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.only(left: 8, right: 8),
               child: Row(
@@ -208,13 +208,10 @@ class AllBills extends StatelessWidget {
                       )
                     ],
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: FaIcon(
-                      FontAwesomeIcons.chevronRight,
-                      size: 20,
-                      color: Colors.black,
-                    ),
+                  FaIcon(
+                    FontAwesomeIcons.chevronRight,
+                    size: 20,
+                    color: Colors.black,
                   ),
                 ],
               ),

@@ -1,14 +1,14 @@
-import 'package:dalimansys_app/pages/insideApp/invosys/allBills/confirmProcess.dart';
+import 'package:dalimansys_app/pages/insideApp/buysys/allPurches/purchesInformation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BillDetails extends StatefulWidget {
+class PurchesDetails extends StatefulWidget {
   @override
-  _BillDetailsState createState() => _BillDetailsState();
+  _PurchesDetailsState createState() => _PurchesDetailsState();
 }
 
-class _BillDetailsState extends State<BillDetails> {
+class _PurchesDetailsState extends State<PurchesDetails> {
   var tfcYorum = TextEditingController();
   var scrollController = ScrollController();
   //int value = 0;
@@ -31,7 +31,7 @@ class _BillDetailsState extends State<BillDetails> {
         ),
         centerTitle: true,
         title: Text(
-          "Fatura Detayı",
+          "Satın Alma Talebi Detayı",
           style: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: 15,
@@ -104,77 +104,77 @@ class _BillDetailsState extends State<BillDetails> {
                   ],
                 ),
               ),
-              Card(
-                //Column 2. Eleman
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          print("Tıklandı");
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 150,
-                          color: Colors.grey[300],
-                          child: Image.asset(
-                            "assets/images/resim.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "3 sayfa içeriyor.",
-                            style: GoogleFonts.poppins(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "Caner Sarıkavaklı ekledi.",
-                            style: GoogleFonts.poppins(
-                              fontStyle: FontStyle.italic,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 24,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "Faturayı görüntüle.",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              FaIcon(
-                                FontAwesomeIcons.longArrowAltRight,
-                                color: Color(0xFF134AE5),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(),
-                    ],
-                  ),
-                ),
-              ),
+              // Card(
+              //   //Column 2. Eleman
+              //   elevation: 10,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(12.0),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         GestureDetector(
+              //           onTap: () {
+              //             print("Tıklandı");
+              //           },
+              //           child: Container(
+              //             width: 100,
+              //             height: 150,
+              //             color: Colors.grey[300],
+              //             child: Image.asset(
+              //               "assets/images/resim.jpg",
+              //               fit: BoxFit.cover,
+              //             ),
+              //           ),
+              //         ),
+              //         Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Text(
+              //               "3 sayfa içeriyor.",
+              //               style: GoogleFonts.poppins(
+              //                 color: Colors.black,
+              //                 fontSize: 15,
+              //                 fontWeight: FontWeight.bold,
+              //               ),
+              //             ),
+              //             Text(
+              //               "Caner Sarıkavaklı ekledi.",
+              //               style: GoogleFonts.poppins(
+              //                 fontStyle: FontStyle.italic,
+              //                 color: Colors.black,
+              //                 fontWeight: FontWeight.w500,
+              //                 fontSize: 15,
+              //               ),
+              //             ),
+              //             SizedBox(
+              //               height: 24,
+              //             ),
+              //             Row(
+              //               children: [
+              //                 Text(
+              //                   "Faturayı görüntüle.",
+              //                   style: GoogleFonts.poppins(
+              //                     color: Colors.black,
+              //                     fontSize: 15,
+              //                     fontWeight: FontWeight.w600,
+              //                   ),
+              //                 ),
+              //                 SizedBox(
+              //                   width: 8,
+              //                 ),
+              //                 FaIcon(
+              //                   FontAwesomeIcons.longArrowAltRight,
+              //                   color: Color(0xFF134AE5),
+              //                 ),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //         SizedBox(),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: EdgeInsets.only(
                   top: 8,
@@ -183,7 +183,7 @@ class _BillDetailsState extends State<BillDetails> {
                   right: 16,
                 ),
                 child: Text(
-                  "Onay Sırası",
+                  "Detaylar",
                   style: GoogleFonts.poppins(
                       color: Color(0xFF6A6A6A),
                       fontSize: 15,
@@ -197,7 +197,7 @@ class _BillDetailsState extends State<BillDetails> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ConfirmProcess(),
+                          builder: (context) => PurchesInformation(),
                         ),
                       );
                     },
@@ -287,7 +287,7 @@ class _BillDetailsState extends State<BillDetails> {
                         child: Align(
                           alignment: Alignment.center,
                           child: Text(
-                            "Durumunu Değiştir",
+                            "Detayları görüntüle",
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: 17,
@@ -467,7 +467,7 @@ class _BillDetailsState extends State<BillDetails> {
                 padding:
                     EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
                 child: Text(
-                  "Fatura Açıklaması",
+                  "Talep Açıklaması",
                   style: GoogleFonts.poppins(
                       color: Color(0xFF6A6A6A),
                       fontSize: 15,
@@ -479,7 +479,7 @@ class _BillDetailsState extends State<BillDetails> {
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Text(
-                    "Fatura Erkby tarafından aylık fatura olarak kesildi. 1399 TL ödenmesi gerekiyor.Fatura Erkby tarafından aylık fatura olarak kesildi. 1399 TL ödenmesi gerekiyor.Fatura Erkby tarafından aylık fatura olarak kesildi. 1399 TL ödenmesi gerekiyor.",
+                    "Test açıklama.Test açıklama.Test açıklama.Test açıklama.Test açıklama.Test açıklama.Test açıklama.Test açıklama.Test açıklama.",
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: Colors.black,
@@ -492,7 +492,7 @@ class _BillDetailsState extends State<BillDetails> {
                 padding:
                     EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
                 child: Text(
-                  "Fatura Detayı",
+                  "Talep Detayı",
                   style: GoogleFonts.poppins(
                       color: Color(0xFF6A6A6A),
                       fontSize: 15,
@@ -516,33 +516,6 @@ class _BillDetailsState extends State<BillDetails> {
                       ),
                       Text(
                         "Dalisto Adsoft",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Belge Numarası",
-                        style: GoogleFonts.poppins(
-                          color: Color(0xFF969696),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "D00202103702",
                         style: GoogleFonts.poppins(
                           color: Colors.black,
                           fontSize: 15,
@@ -588,6 +561,33 @@ class _BillDetailsState extends State<BillDetails> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
+                        "Satın Alma No",
+                        style: GoogleFonts.poppins(
+                          color: Color(0xFF969696),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "P002022074",
+                        style: GoogleFonts.poppins(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Card(
+                elevation: 10,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         "Belge Türü",
                         style: GoogleFonts.poppins(
                           color: Color(0xFF969696),
@@ -596,7 +596,7 @@ class _BillDetailsState extends State<BillDetails> {
                         ),
                       ),
                       Text(
-                        "Müşteri",
+                        "Malzeme SA Talebi",
                         style: GoogleFonts.poppins(
                           color: Colors.black,
                           fontSize: 15,
@@ -607,114 +607,114 @@ class _BillDetailsState extends State<BillDetails> {
                   ),
                 ),
               ),
-              Card(
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Firma",
-                        style: GoogleFonts.poppins(
-                          color: Color(0xFF969696),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "ERKBY Tarım A.Ş.",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Fatura Tipi",
-                        style: GoogleFonts.poppins(
-                          color: Color(0xFF969696),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "Aylık Fatura",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Fatura Tutarı",
-                        style: GoogleFonts.poppins(
-                          color: Color(0xFF969696),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "1.399,99",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Fatura Ekleyen",
-                        style: GoogleFonts.poppins(
-                          color: Color(0xFF969696),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        "Caner Sarıkavaklı",
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Card(
+              //   elevation: 10,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(12.0),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Text(
+              //           "Firma",
+              //           style: GoogleFonts.poppins(
+              //             color: Color(0xFF969696),
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w500,
+              //           ),
+              //         ),
+              //         Text(
+              //           "ERKBY Tarım A.Ş.",
+              //           style: GoogleFonts.poppins(
+              //             color: Colors.black,
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w800,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // Card(
+              //   elevation: 10,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(12.0),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Text(
+              //           "Fatura Tipi",
+              //           style: GoogleFonts.poppins(
+              //             color: Color(0xFF969696),
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w500,
+              //           ),
+              //         ),
+              //         Text(
+              //           "Aylık Fatura",
+              //           style: GoogleFonts.poppins(
+              //             color: Colors.black,
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w800,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // Card(
+              //   elevation: 10,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(12.0),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Text(
+              //           "Fatura Tutarı",
+              //           style: GoogleFonts.poppins(
+              //             color: Color(0xFF969696),
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w500,
+              //           ),
+              //         ),
+              //         Text(
+              //           "1.399,99",
+              //           style: GoogleFonts.poppins(
+              //             color: Colors.black,
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w800,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // Card(
+              //   elevation: 10,
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(12.0),
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         Text(
+              //           "Fatura Ekleyen",
+              //           style: GoogleFonts.poppins(
+              //             color: Color(0xFF969696),
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w500,
+              //           ),
+              //         ),
+              //         Text(
+              //           "Caner Sarıkavaklı",
+              //           style: GoogleFonts.poppins(
+              //             color: Colors.black,
+              //             fontSize: 15,
+              //             fontWeight: FontWeight.w800,
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

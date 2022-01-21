@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        drawer: Drawer(),
+        drawer: _buildDrawer(),
         appBar: AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Tab(
                 child: SvgPicture.asset(
-                  "assets/images/buysys.svg",
+                  "assets/images/purchsys.svg",
                 ),
               ),
             ],
@@ -66,6 +66,25 @@ class _HomePageState extends State<HomePage> {
             Invosys(),
             Buysys(),
           ],
+        ),
+      ),
+    );
+  }
+
+  Drawer _buildDrawer() {
+    return Drawer(
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF1597D8),
+                Color(0xFF9BDEF7),
+              ]),
+        ),
+        child: Column(
+          children: [],
         ),
       ),
     );

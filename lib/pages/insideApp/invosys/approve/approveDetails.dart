@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BillDetails extends StatefulWidget {
+class ApproveDetails extends StatefulWidget {
   @override
-  _BillDetailsState createState() => _BillDetailsState();
+  _ApproveDetailsState createState() => _ApproveDetailsState();
 }
 
-class _BillDetailsState extends State<BillDetails> {
+class _ApproveDetailsState extends State<ApproveDetails> {
   var tfcYorum = TextEditingController();
   var scrollController = ScrollController();
   //int value = 0;

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:dalimansys_app/pages/entrance/confirmedPage.dart';
 import 'package:dalimansys_app/pages/entrance/loginPage.dart';
 import 'package:flutter/material.dart';

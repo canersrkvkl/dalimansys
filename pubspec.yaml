@@ -33,6 +33,11 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   image_picker: ^0.8.4+4
   image_cropper: ^1.4.1
+  chips_choice: ^2.0.1
+  dropdown_search: ^2.0.1
+  crop_image: ^1.0.1
+  pdf: ^3.6.5
+  path_provider: ^2.0.8
 
 dev_dependencies:
   flutter_test:

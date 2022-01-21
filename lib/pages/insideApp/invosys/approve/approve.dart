@@ -1,46 +1,12 @@
-import 'package:dalimansys_app/pages/insideApp/invosys/allBills/billDetails.dart';
-import 'package:dalimansys_app/pages/insideApp/invosys/newBill.dart';
+import 'package:dalimansys_app/pages/insideApp/invosys/approve/approveDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AllBills extends StatelessWidget {
+class Approve extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF1597D8),
-                Color(0xFF9BDEF7),
-              ],
-            ),
-          ),
-          child: Align(
-            alignment: Alignment.center,
-            child: FaIcon(
-              FontAwesomeIcons.plus,
-              size: 20,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => NewBill(),
-            ),
-          );
-        },
-      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 16.0),
         child: GridView.count(
@@ -63,7 +29,7 @@ class AllBills extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BillDetails(),
+            builder: (context) => ApproveDetails(),
           ),
         );
       },
@@ -192,7 +158,7 @@ class AllBills extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Onay Bekliyor.",
+                        "Onaylandı",
                         style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -202,8 +168,8 @@ class AllBills extends StatelessWidget {
                         width: 8,
                       ),
                       FaIcon(
-                        FontAwesomeIcons.hourglassHalf,
-                        color: Color(0xFFF48421),
+                        FontAwesomeIcons.solidCheckCircle,
+                        color: Color(0xFF1597D8),
                         size: 15,
                       )
                     ],
@@ -224,4 +190,5 @@ class AllBills extends StatelessWidget {
       ),
     );
   }
+
 }
