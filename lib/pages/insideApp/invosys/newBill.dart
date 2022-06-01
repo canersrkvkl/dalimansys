@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:another_flushbar/flushbar.dart';
+import 'package:dalimansys_app/pages/insideApp/invosys/newBill2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +20,16 @@ class NewBill extends StatefulWidget {
 }
 
 class _NewBillState extends State<NewBill> {
-  String valueChoose;
+  String companyName = "";
+  String department = "";
+  String documentType = "";
+  String business = "";
+  String billsType = "";
+  String unit = "";
+  var tfcBillNo = TextEditingController();
+  var tfcBillPrice = TextEditingController();
+  var tfcDescription = TextEditingController();
+  var formKey = GlobalKey();
   List<String> listItem = <String>[
     "TL",
     "EURO",
@@ -27,6 +38,7 @@ class _NewBillState extends State<NewBill> {
   ];
   List<File> imageFile = [];
   final pdf = pw.Document();
+  var pdfFile;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +56,15 @@ class _NewBillState extends State<NewBill> {
             ),
           ),
         ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.close,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           "Yeni Fatura Ekle",
           style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w500),
@@ -53,7 +74,7 @@ class _NewBillState extends State<NewBill> {
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          color: Colors.grey[200],
+          color: Color(0xFFEFEFEF),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -76,136 +97,238 @@ class _NewBillState extends State<NewBill> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                      context: context,
-                      builder: (context) {
-                        return Container(
-                          color: Color(0xFF737373),
-                          height: 130,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).canvasColor,
-                              borderRadius: BorderRadius.only(
-                                topLeft: const Radius.circular(10),
-                                topRight: const Radius.circular(10),
+              Card(
+                elevation: 10.0,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+                  child: imageFile.isEmpty
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.camera,
+                              size: 25,
+                              color: Color(0xFF134AE5),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Container(
+                                        color: Color(0xFF737373),
+                                        height: 130,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Theme.of(context).canvasColor,
+                                            borderRadius: BorderRadius.only(
+                                              topLeft:
+                                                  const Radius.circular(10),
+                                              topRight:
+                                                  const Radius.circular(10),
+                                            ),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              ListTile(
+                                                leading: FaIcon(
+                                                    FontAwesomeIcons.camera),
+                                                title: Text(
+                                                  "Kameradan Çek",
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  _getFromCamera();
+                                                },
+                                              ),
+                                              ListTile(
+                                                leading: FaIcon(FontAwesomeIcons
+                                                    .solidImage),
+                                                title: Text(
+                                                  "Galeriden Seç",
+                                                  style: GoogleFonts.poppins(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                                onTap: () {
+                                                  _getFromGallery();
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Text(
+                                "Fatura görüntüsü ekleyin.",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF134AE5),
+                                ),
                               ),
                             ),
-                            child: Column(
+                            SizedBox(),
+                          ],
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          height: 200,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8,
+                              right: 8,
+                            ),
+                            child: Row(
                               children: [
-                                ListTile(
-                                  leading: FaIcon(FontAwesomeIcons.camera),
-                                  title: Text(
-                                    "Kameradan Çek",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 8.0,
+                                    right: 8.0,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return Container(
+                                              color: Color(0xFF737373),
+                                              height: 130,
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .canvasColor,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topLeft:
+                                                        const Radius.circular(
+                                                            10),
+                                                    topRight:
+                                                        const Radius.circular(
+                                                            10),
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    ListTile(
+                                                      leading: FaIcon(
+                                                          FontAwesomeIcons
+                                                              .camera),
+                                                      title: Text(
+                                                        "Kameradan Çek",
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      onTap: () {
+                                                        _getFromCamera();
+                                                      },
+                                                    ),
+                                                    ListTile(
+                                                      leading: FaIcon(
+                                                          FontAwesomeIcons
+                                                              .solidImage),
+                                                      title: Text(
+                                                        "Galeriden Seç",
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      onTap: () {
+                                                        _getFromGallery();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          });
+                                    },
+                                    child: Container(
+                                      height: 200,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[400],
+                                      ),
+                                      child: Center(
+                                        child: FaIcon(
+                                          FontAwesomeIcons.camera,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  onTap: () {
-                                    _getFromCamera();
-                                  },
                                 ),
-                                ListTile(
-                                  leading: FaIcon(FontAwesomeIcons.solidImage),
-                                  title: Text(
-                                    "Galeriden Seç",
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                                Expanded(
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: imageFile.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 4.0,
+                                          right: 4,
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            Image.file(
+                                              imageFile[index],
+                                              fit: BoxFit.cover,
+                                            ),
+                                            Positioned(
+                                              left: 100,
+                                              bottom: 157,
+                                              child: SizedBox(
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.black
+                                                      .withOpacity(0.6),
+                                                  child: IconButton(
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .solidTrashAlt,
+                                                      size: 17,
+                                                      color: Colors.white,
+                                                    ),
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        imageFile.remove(
+                                                            imageFile[index]);
+                                                      });
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   ),
-                                  onTap: () {
-                                    _getFromGallery();
-                                  },
                                 ),
                               ],
                             ),
                           ),
-                        );
-                      });
-                },
-                child: Card(
-                  elevation: 10.0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 24.0, bottom: 24.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.camera,
-                          size: 25,
-                          color: Color(0xFF134AE5),
                         ),
-                        Text(
-                          "Fatura görüntüsü ekleyin.",
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF134AE5),
-                          ),
-                        ),
-                        SizedBox(),
-                      ],
-                    ),
-                  ),
                 ),
               ),
-              imageFile != null
-                  ? Container(
-                    width: double.infinity,
-                    height: 200,
-                    child: Card(
-                      elevation: 10,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: imageFile.length,
-                          itemBuilder: (context, index) {
-                            return Stack(
-                              children: [
-                                Image.file(
-                                  imageFile[index],
-                                  fit: BoxFit.cover,
-                                ),
-                                Positioned(
-                                  left: 85,
-                                  bottom: 135,
-                                  child: IconButton(
-                                    icon: FaIcon(FontAwesomeIcons.solidTimesCircle, color: Colors.white,),
-                                    onPressed: (){},
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                  : Container(
-                    width: double.infinity,
-                    height: 200,
-                    child: Card(
-                      elevation: 10,
-                      child: Center(
-                        child: Text("Henüz Fatura Görseli Eklenmedi", style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),),
-                      ),
-                    ),
-                  ),
               Padding(
                 padding: const EdgeInsets.only(
-                  left: 8.0,
-                  right: 8.0,
-                  top: 16.0,
-                  bottom: 16.0,
+                  left: 8,
+                  right: 8,
+                  top: 16,
+                  bottom: 16,
                 ),
                 child: Align(
                   alignment: Alignment.centerLeft,
@@ -220,7 +343,7 @@ class _NewBillState extends State<NewBill> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
@@ -242,6 +365,7 @@ class _NewBillState extends State<NewBill> {
                     ),
                     searchFieldProps: TextFieldProps(
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(),
                         hintText: "Şirket Ara",
                         hintStyle: GoogleFonts.poppins(
                           fontSize: 15,
@@ -269,16 +393,26 @@ class _NewBillState extends State<NewBill> {
                           fontSize: 15,
                           fontWeight: FontWeight.w600),
                     ),
-                    onChanged: print,
+                    onChanged: (value) {
+                      companyName = value;
+                    },
+                    validator: (String value) {
+                      if (value == null) {
+                        return "Şirket alanı boş bırakılamaz.";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
                   child: TextField(
+                    controller: tfcBillNo,
                     decoration: InputDecoration(
                       hintText: "Fatura No",
                       hintStyle: GoogleFonts.poppins(
@@ -296,7 +430,7 @@ class _NewBillState extends State<NewBill> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
@@ -324,6 +458,7 @@ class _NewBillState extends State<NewBill> {
                     items: ["Brazil", "Italia", "Tunisia", 'Canada'],
                     searchFieldProps: TextFieldProps(
                         decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(),
                       hintText: "Departman Ara",
                       hintStyle: GoogleFonts.poppins(
                         fontSize: 15,
@@ -343,13 +478,15 @@ class _NewBillState extends State<NewBill> {
                       ),
                     ),
                     //popupItemDisabled: (String s) => s.startsWith('I'),
-                    onChanged: print,
+                    onChanged: (value) {
+                      department = value;
+                    },
                     //selectedItem: "Brazil",
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
@@ -376,6 +513,7 @@ class _NewBillState extends State<NewBill> {
                     items: ["Müşteri", "Tedarikçi"],
                     searchFieldProps: TextFieldProps(
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(),
                         hintText: "Belge Türü Ara",
                         hintStyle: GoogleFonts.poppins(
                           fontSize: 15,
@@ -395,12 +533,14 @@ class _NewBillState extends State<NewBill> {
                         borderSide: BorderSide.none,
                       ),
                     ),
-                    onChanged: print,
+                    onChanged: (value) {
+                      documentType = value;
+                    },
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
@@ -428,6 +568,7 @@ class _NewBillState extends State<NewBill> {
                     items: ["Brazil", "Italia", "Tunisia", 'Canada'],
                     searchFieldProps: TextFieldProps(
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(),
                         hintText: "Firma Ara",
                         hintStyle: GoogleFonts.poppins(
                           fontSize: 15,
@@ -446,12 +587,14 @@ class _NewBillState extends State<NewBill> {
                         borderSide: BorderSide.none,
                       ),
                     ),
-                    onChanged: print,
+                    onChanged: (value) {
+                      business = value;
+                    },
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
@@ -498,6 +641,7 @@ class _NewBillState extends State<NewBill> {
                     ],
                     searchFieldProps: TextFieldProps(
                       decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(),
                         hintText: "Fatura Tipi Ara",
                         hintStyle: GoogleFonts.poppins(
                           fontSize: 15,
@@ -517,13 +661,13 @@ class _NewBillState extends State<NewBill> {
                       ),
                     ),
                     onChanged: (value) {
-                      print(value);
+                      billsType = value;
                     },
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(4.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -532,6 +676,7 @@ class _NewBillState extends State<NewBill> {
                         color: Colors.white,
                         elevation: 10,
                         child: TextField(
+                          controller: tfcBillPrice,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -578,6 +723,7 @@ class _NewBillState extends State<NewBill> {
                           items: ["TR", "EURO", "USD", "RON"],
                           searchFieldProps: TextFieldProps(
                             decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(),
                               hintText: "Para Birimi Ara",
                               hintStyle: GoogleFonts.poppins(
                                 fontSize: 15,
@@ -598,9 +744,9 @@ class _NewBillState extends State<NewBill> {
                               borderSide: BorderSide.none,
                             ),
                           ),
-                          //popupItemDisabled: (String s) => s.startsWith('I'),
-                          onChanged: print,
-                          //selectedItem: "Brazil",
+                          onChanged: (value) {
+                            unit = value;
+                          },
                         ),
                       ),
                     ),
@@ -608,11 +754,12 @@ class _NewBillState extends State<NewBill> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(4.0),
                 child: Material(
                   color: Colors.white,
                   elevation: 10,
                   child: TextField(
+                    controller: tfcDescription,
                     decoration: InputDecoration(
                       hintText: "Fatura Açıklaması",
                       hintStyle: GoogleFonts.poppins(
@@ -629,7 +776,7 @@ class _NewBillState extends State<NewBill> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    left: 8.0, right: 8.0, top: 8.0, bottom: 24.0),
+                    left: 4.0, right: 4.0, top: 8.0, bottom: 24.0),
                 child: SizedBox(
                   width: 150,
                   height: 50,
@@ -664,11 +811,59 @@ class _NewBillState extends State<NewBill> {
                       ],
                     ),
                     onPressed: () {
-                      for(var img in imageFile){
-                        print(img);
+                      if (companyName.length == 0 ||
+                          tfcBillNo.text.length == 0 ||
+                          department.length == 0 ||
+                          documentType.length == 0 ||
+                          business.length == 0 ||
+                          billsType.length == 0 ||
+                          tfcBillPrice.text.length == 0 ||
+                          unit.length == 0 ||
+                          tfcDescription.text.length == 0) {
+                        Flushbar(
+                          icon: Icon(
+                            Icons.warning,
+                            color: Colors.white,
+                          ),
+                          titleText: Text(
+                            "Eksik bilgiler var",
+                            style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          messageText: Text(
+                            "Boş alan/alanlar var. Lütfen tüm alanları doldurduğunuzdan emin olun",
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          duration: Duration(seconds: 3),
+                          backgroundColor: Colors.red,
+                          flushbarPosition: FlushbarPosition.TOP,
+                        ).show(context);
+                      } else {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NewBill2(
+                              companyName: companyName,
+                              department: department,
+                              documentType: documentType,
+                              business: business,
+                              billType: billsType,
+                              unit: unit,
+                              billNo: tfcBillNo.text, 
+                              billPrice: tfcBillPrice.text,
+                              description: tfcDescription.text,
+                            ),
+                          ),
+                        );
+                        _createPdf();
+                        _savePdf();
                       }
-                      _createPdf();
-                      _savePdf();
                     },
                   ),
                 ),

@@ -37,7 +37,7 @@ class _ConfirmProcessState extends State<ConfirmProcess> {
       body: SingleChildScrollView(
         child: SingleChildScrollView(
           child: Container(
-            color: Colors.grey[300],
+            color: Color(0xFFEFEFEF),
             width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,14 +56,14 @@ class _ConfirmProcessState extends State<ConfirmProcess> {
                 _buildCard(
                   "Geylani Arca",
                   "Onaylandı.",
-                  FontAwesomeIcons.checkCircle,
+                  FontAwesomeIcons.solidCheckCircle,
                   0xFF1597D8,
                   "Fatura tutarı çok olsa da ödenmesi benim için uygundur.",
                 ),
                 _buildCard(
                   "Merve Mermer Bilgin",
                   "Onaylandı.",
-                  FontAwesomeIcons.checkCircle,
+                  FontAwesomeIcons.solidCheckCircle,
                   0xFF1597D8,
                   "",
                 ),
@@ -77,7 +77,7 @@ class _ConfirmProcessState extends State<ConfirmProcess> {
                 _buildCard(
                   "Caner Sarıkavaklı",
                   "Onaylanmadı.",
-                  FontAwesomeIcons.checkCircle,
+                  FontAwesomeIcons.solidTimesCircle,
                   0xFFFD0001,
                   "Geylani Bey’e katılıyorum. Ancak ben reddediyorum. Böyle bir fiyat kabul edilemez.",
                 ),

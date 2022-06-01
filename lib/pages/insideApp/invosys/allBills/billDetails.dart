@@ -11,7 +11,6 @@ class BillDetails extends StatefulWidget {
 class _BillDetailsState extends State<BillDetails> {
   var tfcYorum = TextEditingController();
   var scrollController = ScrollController();
-  //int value = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +49,7 @@ class _BillDetailsState extends State<BillDetails> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.grey[300],
+          color: Color(0xFFEFEFEF),
           width: MediaQuery.of(context).size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,7 +219,9 @@ class _BillDetailsState extends State<BillDetails> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(width: 8,),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
                                     FaIcon(
                                       FontAwesomeIcons.hourglassHalf,
                                       color: Color(0xFFF48421),
@@ -272,7 +273,7 @@ class _BillDetailsState extends State<BillDetails> {
                     child: GestureDetector(
                       child: Container(
                         width: double.infinity,
-                        height: 60,
+                        height: 50,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
@@ -298,7 +299,7 @@ class _BillDetailsState extends State<BillDetails> {
                       ),
                       //YORUM SAYFASINI AÇ
                       onTap: () {
-                        int value = 0;
+                        //int value = 0;
                         showModalBottomSheet(
                           isScrollControlled: true,
                           context: context,
@@ -318,8 +319,8 @@ class _BillDetailsState extends State<BillDetails> {
                                     //mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Container(
-                                        color: Colors.grey[400],
-                                        height: 100,  
+                                        color: Color(0xFFEFEFEF),
+                                        height: 100,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: SingleChildScrollView(
@@ -343,113 +344,61 @@ class _BillDetailsState extends State<BillDetails> {
                                           ),
                                         ),
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Wrap(
-                                              spacing: 8.0,
-                                              children: [
-                                                ChoiceChip(
-                                                  label: Text(
-                                                    "Onayla",
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w500),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: (){
+                                                Navigator.pop(context);
+                                              },
+                                              style: ButtonStyle(
+                                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(15),
                                                   ),
-                                                  avatar: FaIcon(
-                                                    FontAwesomeIcons
-                                                        .solidCheckCircle,
-                                                    color: Color(0xFF1597D8),
-                                                    size: 17,
-                                                  ),
-                                                  selected: value == 1,
-                                                  onSelected: (selected) {
-                                                    print(selected);
-                                                    setState(() {
-                                                      if (selected) {
-                                                        value = 1;
-                                                      } else {
-                                                        value = 0;
-                                                      }
-                                                    });
-                                                  },
                                                 ),
-                                                SizedBox(
-                                                  width: 8.0,
+                                                backgroundColor: MaterialStateProperty.all<Color>(
+                                                  Color(0xFFEFEFEF),
                                                 ),
-                                                ChoiceChip(
-                                                  label: Text(
-                                                    "Reddet",
-                                                    style: GoogleFonts.poppins(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  avatar: FaIcon(
-                                                    FontAwesomeIcons
-                                                        .solidTimesCircle,
-                                                    color: Color(0xFFFD0001),
-                                                    size: 17,
-                                                  ),
-                                                  selected: value == 2,
-                                                  onSelected: (selected) {
-                                                    setState(() {
-                                                      if (selected) {
-                                                        value = 2;
-                                                      } else {
-                                                        value = 0;
-                                                      }
-                                                    });
-                                                  },
-                                                )
-                                              ],
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  FaIcon(FontAwesomeIcons.solidCheckCircle, color: Color(0xFF1597D8),),
+                                                  SizedBox(width: 8,),
+                                                  Text("Onayla", style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w500),),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              children: [
-                                                FloatingActionButton(
-                                                  child: Container(
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      gradient: LinearGradient(
-                                                        begin:
-                                                            Alignment.topLeft,
-                                                        end: Alignment
-                                                            .bottomRight,
-                                                        colors: [
-                                                          Color(0xFF6285E8),
-                                                          Color(0xFF4049E5),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: FaIcon(
-                                                        FontAwesomeIcons.check,
-                                                        size: 20,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                    print(tfcYorum.text);
-                                                    print(value);
-                                                  },
-                                                ),
-                                              ],
+                                            SizedBox(
+                                              width: 8,
                                             ),
-                                          ),
-                                        ],
+                                            ElevatedButton(
+                                              onPressed: (){
+                                                Navigator.pop(context);
+                                              },
+                                              style: ButtonStyle(
+                                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(15),
+                                                  ),
+                                                ),
+                                                backgroundColor: MaterialStateProperty.all<Color>(
+                                                  Color(0xFFEFEFEF),
+                                                ),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  FaIcon(FontAwesomeIcons.solidTimesCircle, color: Color(0xFFFD0001),),
+                                                  SizedBox(width: 8,),
+                                                  Text("Reddet", style: GoogleFonts.poppins(color: Colors.black, fontWeight: FontWeight.w500),),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
